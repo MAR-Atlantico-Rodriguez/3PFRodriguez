@@ -1,0 +1,29 @@
+<mat-drawer-container class="example-container" autosize>
+    <!-- SIDEBAR INICIO -->
+    <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <!-- SIDEBAR FIN -->
+
+    <!-- MAIN CONTENT INICIO-->
+    <div class="example-sidenav-content">
+        <!-- COLORES DE ANGULAR MATERIAL
+        "primary"
+        "accent"
+        "warn"
+      -->
+
+        <!-- TOOLBAR INICIO -->
+        <app-header [draw]="drawer"></app-header>
+        <!-- TOOLBAR FIN -->
+
+        <main class="p-5">
+
+            <router-outlet></router-outlet>
+
+            <!-- <app-clase-pipes /> -->
+        </main>
+
+    </div>
+    <!-- MAIN CONTENT FIN-->
+</mat-drawer-container>
