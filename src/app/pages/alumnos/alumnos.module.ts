@@ -13,6 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AlumnosDialogComponent } from './alumnos-dialog/alumnos-dialog.component';
 import { FontTituloDirective } from '../../core/directives/font-titulo.directive';
+import { NomApeAlumnosPipe } from '../../core/pipes/nom-ape-alumnos.pipe';
 
 
 
@@ -22,7 +23,8 @@ import { FontTituloDirective } from '../../core/directives/font-titulo.directive
   declarations: [
     AlumnosComponent,
     AlumnosDialogComponent,
-    FontTituloDirective
+    FontTituloDirective,
+    NomApeAlumnosPipe
   ],
   imports: [
     CommonModule,

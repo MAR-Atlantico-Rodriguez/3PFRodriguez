@@ -8,6 +8,7 @@ import { LayoutModule } from './layout/layout.module';
 import { ReversePipe } from './core/pipes/reverse.pipe';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+// import { NomApeAlumnosPipe } from './core/pipes/nom-ape-alumnos.pipe';
 // import { FontTituloDirective } from './core/directives/font-titulo.directive';
 
 
@@ -15,6 +16,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
   declarations: [
     AppComponent,
     ReversePipe,
+    // NomApeAlumnosPipe,
     // FontTituloDirective
   ],
   imports: [

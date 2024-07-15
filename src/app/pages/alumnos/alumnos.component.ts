@@ -17,7 +17,7 @@ export class AlumnosComponent {
     private matDialog: MatDialog
   ) { }
 
-  displayedColumns: string[] = ['id', 'name', 'surname', 'dni', 'sex', 'birthdate', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'dni', 'sex', 'birthdate', 'actions'];
   dataSource: Alumno[] = [];
   isLoading = false;
 
