@@ -2,7 +2,7 @@ export interface Alumno {
     id: string;
     name: string;
     surname: string;
-    dni: bigint;
+    dni: string;
     sex: string;
     birthdate: Date;
 }

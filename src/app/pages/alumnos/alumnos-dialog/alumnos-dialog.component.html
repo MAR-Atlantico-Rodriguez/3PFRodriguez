@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>
+    {{ editingAlumno ? "Editando " + editingAlumno.name : "Crear Alumno" }}
+</h2>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="alumnoForm">
+        <p>
+            <mat-form-field class="w-full">
+                <mat-label>DNI</mat-label>
+                <input formControlName="dni" matInput />
+                <mat-error>El campo es requerido</mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name" matInput />
+                <mat-error>El campo es requerido</mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="w-full">
+                <mat-label>Apellido</mat-label>
+                <input formControlName="surname" matInput />
+                <mat-error>El campo es requerido</mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="w-full">
+                <mat-label>Sexo</mat-label>
+                <select matNativeControl required formControlName="sex">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                <mat-error>El campo es requerido</mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <!-- DATEPICKER (RANGO) -->
+            <mat-form-field class="w-full">
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthdate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </p>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-button>Cancelar</button>
+    <button (click)="onSubmit()" mat-button>Guardar</button>
+</mat-dialog-actions>
