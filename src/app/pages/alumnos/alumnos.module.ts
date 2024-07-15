@@ -12,12 +12,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AlumnosDialogComponent } from './alumnos-dialog/alumnos-dialog.component';
+import { FontTituloDirective } from '../../core/directives/font-titulo.directive';
+
+
+
 
 
 @NgModule({
   declarations: [
     AlumnosComponent,
-    AlumnosDialogComponent
+    AlumnosDialogComponent,
+    FontTituloDirective
   ],
   imports: [
     CommonModule,
