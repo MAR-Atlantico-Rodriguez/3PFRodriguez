@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlumnosComponent } from '../pages/alumnos/alumnos.component';
 import { CursosComponent } from '../pages/cursos/cursos.component';
 import { InscripcionesComponent } from '../pages/inscripciones/inscripciones.component';
+import { ClasesComponent } from '../pages/clases/clases.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'inscripciones',
     component: InscripcionesComponent,
     loadChildren: () => import('../pages/inscripciones/inscripciones.module').then(m => m.InscripcionesModule)
+  },
+  {
+    path: 'clases',
+    component: ClasesComponent,
+    loadChildren: () => import('../pages/clases/clases.module').then(m => m.ClasesModule)
   }
 ];
 

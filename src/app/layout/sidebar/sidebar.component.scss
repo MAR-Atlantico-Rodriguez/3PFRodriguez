@@ -3,10 +3,11 @@
     margin-left: 20px;
 }
 
-h2 {
-    text-align: center;
+.header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
 }
 
-mat-list-item {
-    border-bottom: 1px solid #ddd;
+.mdc-list-item--activated {
+    border-bottom: 2px solid #bbb;
 }

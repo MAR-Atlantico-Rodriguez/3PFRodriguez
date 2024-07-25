@@ -1,8 +1,8 @@
 @if (isLoading) {
 <mat-spinner></mat-spinner>
 } @else {
-<button (click)="openDialog()" mat-flat-button>
-    <mat-icon>add</mat-icon> Crear curso
+<button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
+    <mat-icon>add</mat-icon> Crear Curso
 </button>
 
 <p>El nombre del curso creado es: {{ nombreCurso }}</p>
