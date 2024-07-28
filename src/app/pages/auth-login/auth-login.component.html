@@ -25,7 +25,12 @@
                         <mat-option value="USER">USER</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button type="submit" class="w-full mt-5" mat-flat-button>
+
+                <p *ngIf="error !== ''" class="errorText text-center">
+                    {{error}}
+                </p>
+
+                <button type="submit" class="w-full mt-5" mat-flat-button color="primary">
                     Iniciar sesion
                 </button>
             </form>

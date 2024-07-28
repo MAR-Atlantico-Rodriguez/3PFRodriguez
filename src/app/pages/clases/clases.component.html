@@ -1,1 +1,9 @@
-<p>clases works!</p>
+<h4 appFontTitulo> Listado de Clases</h4>
+
+@if (isLoading) {
+<!-- <mat-spinner></mat-spinner> -->
+} @else {
+<button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
+    <!-- <mat-icon>add</mat-icon>--> Crear Clases
+</button>
+}

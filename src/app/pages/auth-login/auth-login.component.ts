@@ -11,6 +11,7 @@ import { APP_CONFIG } from '../../core/injection-tokens';
 export class AuthLoginComponent {
 
   loginForm: FormGroup;
+  error: any = '';
 
   constructor(
     private authService: AuthService,
@@ -27,9 +28,11 @@ export class AuthLoginComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) {
-      alert('El formulario no es valido');
+      this.error = 'El formulario no es valido';
     } else {
-      this.authService.login();
+      let login = this.authService.login(this.loginForm.value?.email, this.loginForm.value?.password);
+      // console.log(login)
+      this.error = login;
     }
   }
 }

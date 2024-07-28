@@ -5,15 +5,18 @@ import { AuthLoginComponent } from './pages/auth-login/auth-login.component';
 import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'authLogin',
-    loadChildren: () => import('./pages/auth-login/auth-login.module').then(m => m.AuthLoginModule)
-  },
+
   {
     path: '',
     component: LayoutComponent,
     canActivate: [authGuard],
-    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
+    title: "CoderHouse | Dashboard"
+  },
+  {
+    path: 'authLogin',
+    loadChildren: () => import('./pages/auth-login/auth-login.module').then(m => m.AuthLoginModule),
+    title: "Login"
   },
   {
     path: '**', // Cualquier ruta que no coincida con las anteriores (basicmanete es un default)

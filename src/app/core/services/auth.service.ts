@@ -22,10 +22,19 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  login() {
-    this._authUser$.next(this.FAKE_USER);
-    localStorage.setItem('token', this.VALID_TOKEN);
-    this.router.navigate(['']);
+  login(email: string, password: string): any {
+    if (email == this.FAKE_USER.email && password == this.FAKE_USER.password) {
+      this._authUser$.next(this.FAKE_USER);
+      try {
+        localStorage.setItem('token', this.VALID_TOKEN);
+        this.router.navigate(['']);
+      } catch (error) {
+        console.log('error', error);
+        return error;
+      }
+    } else {
+      return 'Email o Password invalidos!';
+    }
   }
 
   logout() {
@@ -35,11 +44,15 @@ export class AuthService {
   }
 
   verifyToken(): Observable<boolean> {
-    const isValid = this.VALID_TOKEN === localStorage.getItem('token');
-    if (isValid) {
-      this._authUser$.next(this.FAKE_USER);
+    try {
+      const isValid = this.VALID_TOKEN === localStorage.getItem('token');
+      if (isValid) {
+        this._authUser$.next(this.FAKE_USER);
+      }
+      return of(isValid);
+    } catch {
+      return of(false);
     }
-    return of(isValid);
   }
 
 

@@ -9,22 +9,26 @@ const routes: Routes = [
   {
     path: 'cursos',
     component: CursosComponent,
-    loadChildren: () => import('../pages/cursos/cursos.module').then(m => m.CursosModule)
+    loadChildren: () => import('../pages/cursos/cursos.module').then(m => m.CursosModule),
+    title: "CoderHouse | Cursos"
   },
   {
     path: 'alumnos',
     component: AlumnosComponent,
-    loadChildren: () => import('../pages/alumnos/alumnos.module').then(m => m.AlumnosModule)
+    loadChildren: () => import('../pages/alumnos/alumnos.module').then(m => m.AlumnosModule),
+    title: "CoderHouse | Alumnos"
   },
   {
     path: 'inscripciones',
     component: InscripcionesComponent,
-    loadChildren: () => import('../pages/inscripciones/inscripciones.module').then(m => m.InscripcionesModule)
+    loadChildren: () => import('../pages/inscripciones/inscripciones.module').then(m => m.InscripcionesModule),
+    title: "CoderHouse | Inscripciones"
   },
   {
     path: 'clases',
     component: ClasesComponent,
-    loadChildren: () => import('../pages/clases/clases.module').then(m => m.ClasesModule)
+    loadChildren: () => import('../pages/clases/clases.module').then(m => m.ClasesModule),
+    title: "CoderHouse | Clases"
   }
 ];
 
