@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { Clase } from '../../core/interfaces/clases';
 import { ClasesService } from '../../core/services/clases.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,14 +12,17 @@ import { generateId } from '../../core/utils';
 })
 export class ClasesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'date', 'actions'];
+  displayedColumns: string[] = ['id', 'cursoId', 'title', 'date', 'actions'];
   dataSource: Clase[] = [];
   isLoading = false;
 
-  constructor(private clasesService: ClasesService, private matDialog: MatDialog) { }
+  constructor(private clasesService: ClasesService, private matDialog: MatDialog) {
+
+  }
 
   ngOnInit(): void {
     this.loadClases();
+    console.log(123)
   }
 
   loadClases() {
@@ -30,7 +33,7 @@ export class ClasesComponent implements OnInit {
       },
       complete: () => {
         this.isLoading = false;
-      },
+      }
     });
   }
 
@@ -47,8 +50,8 @@ export class ClasesComponent implements OnInit {
           value['id'] = generateId(5);
           this.isLoading = true;
           this.clasesService.addClases(value).subscribe({
-            next: (clase) => {
-              this.dataSource = [...clase];
+            next: (clases) => {
+              this.dataSource = [...clases];
             },
             complete: () => {
               this.isLoading = false;
@@ -58,18 +61,18 @@ export class ClasesComponent implements OnInit {
       });
   }
 
-  editClase(editingclase: Clase) {
+  editClases(editingClases: Clase) {
     this.matDialog
-      .open(ClasesDialogComponent, { data: editingclase })
+      .open(ClasesDialogComponent, { data: editingClases })
       .afterClosed()
       .subscribe({
-        next: (clase) => {
-          if (!!clase) {
+        next: (clases) => {
+          if (!!clases) {
             this.clasesService
-              .editClasesById(editingclase.id, clase)
+              .editClasesById(editingClases.id, clases)
               .subscribe({
-                next: (clase) => {
-                  this.dataSource = [...clase];
+                next: (clases) => {
+                  this.dataSource = [...clases];
                 },
               });
           }
@@ -77,13 +80,13 @@ export class ClasesComponent implements OnInit {
       });
   }
 
-  deleteClaseById(id: string) {
+  deleteClasesById(id: string) {
     if (confirm('Esta seguro?')) {
       this.isLoading = true;
 
       this.clasesService.deleteClasesById(id).subscribe({
-        next: (clase) => {
-          this.dataSource = [...clase];
+        next: (clases) => {
+          this.dataSource = [...clases];
         },
         complete: () => {
           this.isLoading = false;
@@ -91,7 +94,4 @@ export class ClasesComponent implements OnInit {
       });
     }
   }
-
-
-
 }

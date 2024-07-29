@@ -1,9 +1,54 @@
-<h4 appFontTitulo> Listado de Clases</h4>
+<h4 appFontTitulo> Lista de Clases</h4>
 
 @if (isLoading) {
-<!-- <mat-spinner></mat-spinner> -->
+<mat-spinner></mat-spinner>
 } @else {
 <button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
-    <!-- <mat-icon>add</mat-icon>--> Crear Clases
+    <mat-icon>add</mat-icon> Crear Clase
 </button>
 }
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="cursoId">
+        <th mat-header-cell *matHeaderCellDef> Curso </th>
+        <td mat-cell *matCellDef="let element"> {{element.cursoId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Titulo </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | date : "dd/MM/YYYY" }} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+            <button (click)="editClases(element)" mat-icon-button>
+                <mat-icon color="basic">edit</mat-icon>
+            </button>
+
+            <button (click)="deleteClasesById(element.id)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

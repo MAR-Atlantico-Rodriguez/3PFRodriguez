@@ -4,8 +4,15 @@ import { AlumnosComponent } from '../pages/alumnos/alumnos.component';
 import { CursosComponent } from '../pages/cursos/cursos.component';
 import { InscripcionesComponent } from '../pages/inscripciones/inscripciones.component';
 import { ClasesComponent } from '../pages/clases/clases.component';
+import { HomeComponent } from '../pages/home/home.component';
 
 const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent,
+    loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule),
+    title: "CoderHouse"
+  },
   {
     path: 'cursos',
     component: CursosComponent,

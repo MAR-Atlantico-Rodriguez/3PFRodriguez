@@ -24,7 +24,7 @@ export class ClasesService {
       id: 'jDcd5',
       title: 'Photoshop',
       date: new Date(),
-      cursoId: '3',
+      cursoId: '1',
     },
   ];
 
