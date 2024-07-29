@@ -5,6 +5,7 @@ import { ClasesRoutingModule } from './clases-routing.module';
 import { ClasesComponent } from './clases.component';
 import { ClasesDialogComponent } from './clases-dialog/clases-dialog.component';
 import { MaterialModule } from '../../core/utils/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MaterialModule } from '../../core/utils/material.module';
   imports: [
     CommonModule,
     ClasesRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ClasesModule { }

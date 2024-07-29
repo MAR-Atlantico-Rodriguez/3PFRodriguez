@@ -1,1 +1,44 @@
-<p>clases-dialog works!</p>
+<h2 mat-dialog-title appFontTitulo>
+    {{ editingClase ? "Editando " + editingClase.title : "Crear Clase" }}
+</h2>
+<br>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="claseForm">
+        <p>
+            <mat-form-field class="w-full">
+                <mat-label>Titulo</mat-label>
+                <input formControlName="title" matInput />
+                <mat-error>El campo es requerido</mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="w-full">
+                <mat-label>Curso</mat-label>
+                <mat-select formControlName="cursoId">
+                    @for (c of courses; track c) {
+
+                    <mat-option [value]="c.id">{{c.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </p>
+
+
+
+        <p>
+            <!-- DATEPICKER (RANGO) -->
+            <mat-form-field class="w-full">
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </p>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-dialog-close mat-button>Cancelar</button>
+    <button (click)="onSubmit()" mat-flat-button color="primary">Guardar</button>
+</mat-dialog-actions>

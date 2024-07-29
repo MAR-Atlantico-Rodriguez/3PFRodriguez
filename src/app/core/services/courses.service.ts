@@ -50,4 +50,8 @@ export class CoursesService {
     this.MY_DATABASE = this.MY_DATABASE.filter((el) => el.id != id);
     return this.getCourses();
   }
+
+  oneCoursesById(id: string): any {
+    return this.MY_DATABASE.find(a => a.id === id)?.name;
+  }
 }

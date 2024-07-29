@@ -13,6 +13,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -33,6 +35,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

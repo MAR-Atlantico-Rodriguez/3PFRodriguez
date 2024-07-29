@@ -22,7 +22,6 @@ export class ClasesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadClases();
-    console.log(123)
   }
 
   loadClases() {
@@ -37,6 +36,10 @@ export class ClasesComponent implements OnInit {
     });
   }
 
+  getCourseName(cursoId: string) {
+    return this.clasesService.getCourseName(cursoId);
+  }
+
   openDialog(): void {
     this.matDialog
       .open(ClasesDialogComponent)
@@ -44,9 +47,6 @@ export class ClasesComponent implements OnInit {
       .subscribe({
         next: (value) => {
           console.log('RECIBIMOS ESTE VALOR: ', value);
-
-          // this.nombreCurso = value.name;
-
           value['id'] = generateId(5);
           this.isLoading = true;
           this.clasesService.addClases(value).subscribe({

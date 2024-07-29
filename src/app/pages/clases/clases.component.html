@@ -19,7 +19,7 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="cursoId">
         <th mat-header-cell *matHeaderCellDef> Curso </th>
-        <td mat-cell *matCellDef="let element"> {{element.cursoId}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.cursoId}} | {{getCourseName(element.cursoId) }} </td>
     </ng-container>
 
     <!-- Name Column -->

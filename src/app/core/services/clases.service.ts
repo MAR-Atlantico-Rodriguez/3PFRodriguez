@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Clase } from '../interfaces/clases';
 import { Observable } from 'rxjs';
+import { CoursesService } from './courses.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +10,26 @@ export class ClasesService {
 
   private MY_DATABASE_CLASES = [
     {
-      id: 'jDcd2',
+      id: 'jDcl1',
       title: 'Clase 1',
       date: new Date(),
-      cursoId: '1',
+      cursoId: 'jDcd2',
     },
     {
-      id: 'jDcd3',
+      id: 'jDcl2',
       title: 'Javascript',
       date: new Date(),
-      cursoId: '2',
+      cursoId: 'jDcd2',
     },
     {
-      id: 'jDcd5',
+      id: 'jDcl5',
       title: 'Photoshop',
       date: new Date(),
-      cursoId: '1',
+      cursoId: 'jDcd5',
     },
   ];
 
-  constructor() { }
+  constructor(private courseService: CoursesService) { }
 
   editClasesById(id: string, update: Clase) {
     this.MY_DATABASE_CLASES = this.MY_DATABASE_CLASES.map((el) =>
@@ -54,6 +55,10 @@ export class ClasesService {
   deleteClasesById(id: string): Observable<Clase[]> {
     this.MY_DATABASE_CLASES = this.MY_DATABASE_CLASES.filter((el) => el.id != id);
     return this.getClases();
+  }
+
+  getCourseName(cursoId: string) {
+    return this.courseService.oneCoursesById(cursoId);
   }
 
 }
