@@ -8,7 +8,6 @@ const routes: Routes = [
 
   {
     path: '',
-    component: LayoutComponent,
     canActivate: [authGuard],
     loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
     title: "CoderHouse | Dashboard"
