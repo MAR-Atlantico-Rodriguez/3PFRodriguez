@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoursesService } from '../../core/services/courses.service';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { generateId } from '../../core/utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cursos',
@@ -27,7 +28,8 @@ export class CursosComponent {
 
   constructor(
     private matDialog: MatDialog,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -68,6 +70,10 @@ export class CursosComponent {
           });
         },
       });
+  }
+
+  viewClases(id: String) {
+    this.router.navigate(['clases', id])
   }
 
   editCourse(editingCourse: Course) {

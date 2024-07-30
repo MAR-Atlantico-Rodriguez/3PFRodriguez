@@ -4,6 +4,8 @@ import { ClasesService } from '../../core/services/clases.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ClasesDialogComponent } from './clases-dialog/clases-dialog.component';
 import { generateId } from '../../core/utils';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-clases',
@@ -15,12 +17,18 @@ export class ClasesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'cursoId', 'title', 'date', 'actions'];
   dataSource: Clase[] = [];
   isLoading = false;
+  idCurso: string | null = '';
 
-  constructor(private clasesService: ClasesService, private matDialog: MatDialog) {
+  constructor(private clasesService: ClasesService,
+    private matDialog: MatDialog,
+    private router: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    if (this.router.snapshot.params['id'] != "") {
+      this.idCurso = this.router.snapshot.params['id'];
+    }
     this.loadClases();
   }
 
@@ -28,7 +36,7 @@ export class ClasesComponent implements OnInit {
     this.isLoading = true;
     this.clasesService.getClases().subscribe({
       next: (clases) => {
-        this.dataSource = clases;
+        this.dataSource = clases.filter((el) => el.cursoId == this.idCurso);
       },
       complete: () => {
         this.isLoading = false;

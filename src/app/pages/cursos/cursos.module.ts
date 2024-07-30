@@ -13,6 +13,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CursosRoutingModule } from './cursos-routing.module';
+import { RouterLink } from '@angular/router';
+
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { CursosRoutingModule } from './cursos-routing.module';
     MatDatepickerModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    RouterLink
   ]
 })
 export class CursosModule { }

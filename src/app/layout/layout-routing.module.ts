@@ -9,34 +9,33 @@ import { HomeComponent } from '../pages/home/home.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    // component: HomeComponent,
     loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule),
     title: "CoderHouse"
   },
   {
     path: 'cursos',
-    component: CursosComponent,
+    // component: CursosComponent,
     loadChildren: () => import('../pages/cursos/cursos.module').then(m => m.CursosModule),
     title: "CoderHouse | Cursos"
   },
   {
     path: 'alumnos',
-    component: AlumnosComponent,
+    // component: AlumnosComponent,
     loadChildren: () => import('../pages/alumnos/alumnos.module').then(m => m.AlumnosModule),
     title: "CoderHouse | Alumnos"
   },
   {
     path: 'inscripciones',
-    component: InscripcionesComponent,
+    // component: InscripcionesComponent,
     loadChildren: () => import('../pages/inscripciones/inscripciones.module').then(m => m.InscripcionesModule),
     title: "CoderHouse | Inscripciones"
   },
   {
     path: 'clases',
-    component: ClasesComponent,
     loadChildren: () => import('../pages/clases/clases.module').then(m => m.ClasesModule),
     title: "CoderHouse | Clases"
-  }
+  },
 ];
 
 @NgModule({

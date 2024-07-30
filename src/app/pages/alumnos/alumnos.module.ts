@@ -6,6 +6,7 @@ import { AlumnosDialogComponent } from './alumnos-dialog/alumnos-dialog.componen
 import { FontTituloDirective } from '../../core/directives/font-titulo.directive';
 import { NomApeAlumnosPipe } from '../../core/pipes/nom-ape-alumnos.pipe';
 import { MaterialModule } from '../../core/utils/material.module';
+import { AlumnosRoutingModule } from './alumnos-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MaterialModule } from '../../core/utils/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    AlumnosRoutingModule
   ]
 })
 export class AlumnosModule { }
