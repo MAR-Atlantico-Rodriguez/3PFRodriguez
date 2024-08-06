@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,21 +10,25 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 
+
 // import { NomApeAlumnosPipe } from './core/pipes/nom-ape-alumnos.pipe';
-// import { FontTituloDirective } from './core/directives/font-titulo.directive';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ReversePipe,
+    // Clase16CounterComponent,
     // NomApeAlumnosPipe,
     // FontTituloDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+
+    // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
 
   providers: [

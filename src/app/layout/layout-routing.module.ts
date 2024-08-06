@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { HomeComponent } from '../pages/home/home.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent
-  },
   {
     path: 'home',
     loadChildren: () => import('../pages/home/home.module').then(m => m.HomeModule),
@@ -32,6 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('../pages/clases/clases.module').then(m => m.ClasesModule),
     title: "CoderHouse | Clases"
   },
+
 ];
 
 @NgModule({
