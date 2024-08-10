@@ -30,9 +30,7 @@ export class AuthLoginComponent {
     if (this.loginForm.invalid) {
       this.error = 'El formulario no es valido';
     } else {
-      let login = this.authService.login(this.loginForm.value?.email, this.loginForm.value?.password);
-      // console.log(login)
-      this.error = login;
+      this.authService.login(this.loginForm.value?.email, this.loginForm.value?.password);
     }
   }
 }

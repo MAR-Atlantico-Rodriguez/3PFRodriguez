@@ -1,57 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Course } from '../interfaces/course';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
-  private MY_DATABASE = [
-    {
-      id: 'jDcd2',
-      name: 'Angular',
-      endDate: new Date(),
-      startDate: new Date(),
-    },
-    {
-      id: 'jDcd3',
-      name: 'Javascript',
-      endDate: new Date(),
-      startDate: new Date(),
-    },
-    {
-      id: 'jDcd5',
-      name: 'Photoshop',
-      endDate: new Date(),
-      startDate: new Date(),
-    },
-  ];
 
-  editCourseById(id: string, update: Course) {
-    this.MY_DATABASE = this.MY_DATABASE.map((el) =>
-      el.id === id ? { ...update, id } : el
-    );
-    return this.getCourses();
-  }
+  constructor(private http: HttpClient) { }
 
   getCourses(): Observable<Course[]> {
-    return new Observable((observer) => {
-      setTimeout(() => {
-        observer.next(this.MY_DATABASE);
-        observer.complete();
-      }, 500);
-    });
+    return this.http.get<Course[]>(environment.apiUrl + '/courses');
   }
 
-  addCourse(course: Course): Observable<Course[]> {
-    this.MY_DATABASE.push(course);
-    return this.getCourses();
+  addCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(environment.apiUrl + '/courses', course);
   }
 
-  deleteCourseById(id: string): Observable<Course[]> {
-    this.MY_DATABASE = this.MY_DATABASE.filter((el) => el.id != id);
-    return this.getCourses();
+  editCourseById(id: string, course: Course) {
+    return this.http.put<Course>(environment.apiUrl + '/courses/' + id, course);
   }
 
-  oneCoursesById(id: string): any {
-    return this.MY_DATABASE.find(a => a.id === id)?.name;
+  deleteCourseById(id: string): Observable<Course> {
+    // this.MY_DATABASE = this.MY_DATABASE.filter((el) => el.id != id);
+    return this.http.delete<Course>(environment.apiUrl + '/courses/' + id);
+    // return this.getCourses();
+  }
+
+  oneCoursesById(id: string): Observable<Course> {
+    // return this.MY_DATABASE.find(a => a.id === id)?.name;
+    return this.http.get<Course>(environment.apiUrl + '/courses/' + id);
   }
 }

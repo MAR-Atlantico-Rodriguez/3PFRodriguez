@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,33 +8,24 @@ import { LayoutModule } from './layout/layout.module';
 import { ReversePipe } from './core/pipes/reverse.pipe';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-
-
-
-// import { NomApeAlumnosPipe } from './core/pipes/nom-ape-alumnos.pipe';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReversePipe,
-    // Clase16CounterComponent,
-    // NomApeAlumnosPipe,
-    // FontTituloDirective
+    ReversePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-
-    // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
 
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
+    provideHttpClient(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {

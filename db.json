@@ -1,0 +1,113 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Martin",
+      "lastName": "Rodriguez",
+      "email": "martin@gmail.com",
+      "password": "123456",
+      "token": "jfsdk43dsakdjasb4Dsdsa$@#fS1212",
+      "role": "ADMIN"
+    },
+    {
+      "id": "2",
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@mail.com",
+      "password": "123456",
+      "token": "jfsdk143bghkr3db4Dsdsa$d@#S",
+      "role": "EMPLOYEE"
+    }
+  ],
+  "courses": [
+    {
+      "name": "Javascript Avanzado",
+      "startDate": "2024-08-21T03:00:00.000Z",
+      "endDate": "2024-08-23T03:00:00.000Z",
+      "id": "1"
+    },
+    {
+      "name": "Angular",
+      "startDate": "2024-08-01T03:00:00.000Z",
+      "endDate": "2024-08-31T03:00:00.000Z",
+      "id": "2"
+    },
+    {
+      "id": "kobu6",
+      "name": "Prueba",
+      "startDate": "2024-08-07T03:00:00.000Z",
+      "endDate": "2024-08-10T03:00:00.000Z"
+    },
+    {
+      "id": "d2Zur",
+      "name": "prueba 2",
+      "startDate": "2024-08-07T03:00:00.000Z",
+      "endDate": "2024-08-14T03:00:00.000Z"
+    },
+    {
+      "name": "Prueba 3",
+      "startDate": "2024-08-14T03:00:00.000Z",
+      "endDate": "2024-08-28T03:00:00.000Z",
+      "id": "LHUZx"
+    }
+  ],
+  "products": [
+    {
+      "name": "test",
+      "price": "test",
+      "id": "1"
+    },
+    {
+      "name": "test",
+      "price": "test",
+      "id": "2"
+    }
+  ],
+  "students": [],
+  "clases": [
+    {
+      "id": "1",
+      "cursoId": "d2Zur",
+      "title": "Clase 1",
+      "date": "2024-08-10T03:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "cursoId": "d2Zur",
+      "title": "Clase 2",
+      "date": "2024-08-11T03:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "cursoId": "1",
+      "title": "Clase 1",
+      "date": "2024-08-13T03:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "cursoId": "2",
+      "title": "Clase 1",
+      "date": "2024-08-12T03:00:00.000Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "43j9",
+      "firstName": "Martin",
+      "lastName": "Rodriguez",
+      "email": "martin@martin.com",
+      "password": "123456",
+      "token": "TOKEN-slkdjflsdkjf102983laje098as-",
+      "role": "ADMIN"
+    },
+    {
+      "id": "53j9",
+      "firstName": "Atlantico",
+      "lastName": "Rodriguez",
+      "email": "atlantico@mail.com",
+      "password": "123456",
+      "token": "TOKEN-oiusdfjwerksdf93$d@#S",
+      "role": "USER"
+    }
+  ]
+}

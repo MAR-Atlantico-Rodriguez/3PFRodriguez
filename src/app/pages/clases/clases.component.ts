@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClasesDialogComponent } from './clases-dialog/clases-dialog.component';
 import { generateId } from '../../core/utils';
 import { ActivatedRoute } from '@angular/router';
+import { find, forkJoin, map, of, tap } from 'rxjs';
+import { CoursesService } from '../../core/services/courses.service';
 
 
 @Component({
@@ -15,11 +17,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ClasesComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'cursoId', 'title', 'date', 'actions'];
-  dataSource: Clase[] = [];
+  dataSource: any = [];
   isLoading = false;
   idCurso: string | null = '';
+  courseName: any;
 
   constructor(private clasesService: ClasesService,
+    private coursesService: CoursesService,
     private matDialog: MatDialog,
     private router: ActivatedRoute) {
 
@@ -34,18 +38,35 @@ export class ClasesComponent implements OnInit {
 
   loadClases() {
     this.isLoading = true;
-    this.clasesService.getClases().subscribe({
-      next: (clases) => {
-        this.dataSource = clases.filter((el) => el.cursoId == this.idCurso);
-      },
-      complete: () => {
-        this.isLoading = false;
-      }
-    });
+    if (!!this.idCurso) {
+      this.getCourseName(this.idCurso);
+
+      this.clasesService.getClasesOfCourses(this.idCurso).subscribe({
+        next: (data) => {
+          this.dataSource = data
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      });
+    } else {
+      this.clasesService.getClases()
+        .subscribe({
+          next: (clases) => {
+            this.dataSource = clases;
+
+          },
+          complete: () => {
+            this.isLoading = false;
+          }
+        });
+    }
   }
 
   getCourseName(cursoId: string) {
-    return this.clasesService.getCourseName(cursoId);
+
+    this.coursesService.oneCoursesById(cursoId).subscribe((d) => this.courseName = d.name)
+
   }
 
   openDialog(): void {
@@ -59,7 +80,8 @@ export class ClasesComponent implements OnInit {
           this.isLoading = true;
           this.clasesService.addClases(value).subscribe({
             next: (clases) => {
-              this.dataSource = [...clases];
+              this.loadClases();
+              // this.dataSource = [...clases];
             },
             complete: () => {
               this.isLoading = false;
@@ -80,7 +102,7 @@ export class ClasesComponent implements OnInit {
               .editClasesById(editingClases.id, clases)
               .subscribe({
                 next: (clases) => {
-                  this.dataSource = [...clases];
+                  // this.dataSource = [...clases];
                 },
               });
           }
@@ -94,7 +116,7 @@ export class ClasesComponent implements OnInit {
 
       this.clasesService.deleteClasesById(id).subscribe({
         next: (clases) => {
-          this.dataSource = [...clases];
+          // this.dataSource = [...clases];
         },
         complete: () => {
           this.isLoading = false;

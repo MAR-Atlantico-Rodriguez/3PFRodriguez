@@ -1,58 +1,96 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private VALID_TOKEN = "TOKEN-Login123123asdasd"
-  private FAKE_USER: User = {
-    id: 1,
-    name: "Martin Rodriguez",
-    email: "martin@martin.com",
-    password: "123456",
-    role: "EMPLOYEE",
-  }
+  // private VALID_TOKEN = "TOKEN-Login123123asdasd"
+  // private FAKE_USER: User = {
+  //   id: 1,
+  //   name: "Martin Rodriguez",
+  //   email: "martin@martin.com",
+  //   password: "123456",
+  //   role: "EMPLOYEE",
+  // }
 
   private _authUser$ = new BehaviorSubject<User | null>(null);
   authUser$ = this._authUser$.asObservable();
+  private isAvailable: boolean;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {
+    this.isAvailable = typeof window !== 'undefined' && !!window.localStorage;
+  }
 
   login(email: string, password: string): any {
-    if (email == this.FAKE_USER.email && password == this.FAKE_USER.password) {
-      this._authUser$.next(this.FAKE_USER);
-      try {
-        localStorage.setItem('token', this.VALID_TOKEN);
-        this.router.navigate(['']);
-      } catch (error) {
-        console.log('error', error);
-        return error;
-      }
+    if (email == '' && password == '') {
+      return 'Email o Password Vacios!';
     } else {
-      return 'Email o Password invalidos!';
+
+      this.http.get<User[]>(environment.apiUrl + '/users', {
+        params: {
+          email: email,
+          password: password
+        }
+      }).subscribe({
+        next: (response) => {
+          // console.log(response)
+          if (response.length > 0) {
+            if (response[0].email === email && response[0].password === password) {
+              localStorage.setItem('token', response[0].token);
+              localStorage.setItem('role', response[0].role);
+              this.router.navigate(['']);
+            } else {
+              alert('Credenciales Invalidas')
+            }
+          } else {
+            alert('Credenciales Invalidas')
+          }
+        },
+        error: (error) => {
+          return error;
+        }
+      });
     }
   }
 
   logout() {
     this._authUser$.next(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigate(['authLogin']);
   }
 
   verifyToken(): Observable<boolean> {
-    try {
-      const isValid = this.VALID_TOKEN === localStorage.getItem('token');
-      if (isValid) {
-        this._authUser$.next(this.FAKE_USER);
-      }
-      return of(isValid);
-    } catch {
+    const token = localStorage.getItem('token');
+    if (!token) {
       return of(false);
     }
+
+    return this.http.get<User[]>(environment.apiUrl + '/users', {
+      params: {
+        token,
+      },
+    })
+      .pipe(
+        map((res) => {
+          if (!res.length) {
+            return false;
+          } else {
+            const authUser = res[0];
+            localStorage.setItem('token', authUser.token);
+            return true;
+          }
+        })
+      );
   }
 
 

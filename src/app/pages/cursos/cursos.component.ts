@@ -5,6 +5,7 @@ import { CoursesService } from '../../core/services/courses.service';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { generateId } from '../../core/utils';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-cursos',
@@ -22,7 +23,7 @@ export class CursosComponent {
     'actions',
   ];
 
-  dataSource: Course[] = [];
+  dataSource: any = [];
 
   isLoading = false;
 
@@ -39,12 +40,12 @@ export class CursosComponent {
   loadCourses() {
     this.isLoading = true;
     this.coursesService.getCourses().subscribe({
-      next: (courses) => {
-        this.dataSource = courses;
+      next: (data) => {
+        this.dataSource = data;
       },
       complete: () => {
         this.isLoading = false;
-      },
+      }
     });
   }
 
@@ -54,20 +55,19 @@ export class CursosComponent {
       .afterClosed()
       .subscribe({
         next: (value) => {
-          console.log('RECIBIMOS ESTE VALOR: ', value);
+          // console.log('RECIBIMOS ESTE VALOR: ', value);
 
           this.nombreCurso = value.name;
 
           value['id'] = generateId(5);
           this.isLoading = true;
-          this.coursesService.addCourse(value).subscribe({
-            next: (courses) => {
-              this.dataSource = [...courses];
-            },
-            complete: () => {
-              this.isLoading = false;
-            },
-          });
+          this.coursesService.addCourse(value)
+            .pipe(tap(() => this.loadCourses()))
+            .subscribe({
+              complete: () => {
+                this.isLoading = false;
+              },
+            });
         },
       });
   }
@@ -85,10 +85,9 @@ export class CursosComponent {
           if (!!value) {
             this.coursesService
               .editCourseById(editingCourse.id, value)
+              .pipe(tap(() => this.loadCourses()))
               .subscribe({
-                next: (courses) => {
-                  this.dataSource = [...courses];
-                },
+                complete: () => this.isLoading = false
               });
           }
         },
@@ -99,14 +98,13 @@ export class CursosComponent {
     if (confirm('Esta seguro?')) {
       this.isLoading = true;
 
-      this.coursesService.deleteCourseById(id).subscribe({
-        next: (courses) => {
-          this.dataSource = [...courses];
-        },
-        complete: () => {
-          this.isLoading = false;
-        },
-      });
+      this.coursesService.deleteCourseById(id)
+        .pipe(tap(() => this.loadCourses()))
+        .subscribe({
+          complete: () => {
+            this.isLoading = false;
+          },
+        });
     }
   }
 }

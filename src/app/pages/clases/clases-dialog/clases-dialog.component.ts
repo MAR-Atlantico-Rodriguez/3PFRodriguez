@@ -32,11 +32,11 @@ export class ClasesDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe({
-      next: (courses) => {
-        this.courses = courses;
-      }
-    })
+    // this.courseService.getCourses().subscribe({
+    //   next: (courses) => {
+    //     this.courses = courses;
+    //   }
+    // })
   }
 
   onSubmit(): void {
