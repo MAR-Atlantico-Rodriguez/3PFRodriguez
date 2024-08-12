@@ -14,11 +14,8 @@ export class SidebarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-
-    this.authService.authUser$.subscribe((auth) => {
-      this.name = (auth !== null) ? auth.name : '';
-      this.role = (auth !== null) ? auth.role : ''
-    })
+    this.role = String(localStorage.getItem('role'));
+    this.name = String(localStorage.getItem('userName'));
   }
 
   logout() {

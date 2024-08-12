@@ -10,16 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
 
-  // private VALID_TOKEN = "TOKEN-Login123123asdasd"
-  // private FAKE_USER: User = {
-  //   id: 1,
-  //   name: "Martin Rodriguez",
-  //   email: "martin@martin.com",
-  //   password: "123456",
-  //   role: "EMPLOYEE",
-  // }
-
-  private _authUser$ = new BehaviorSubject<User | null>(null);
+  _authUser$ = new BehaviorSubject<User | null>(null);
   authUser$ = this._authUser$.asObservable();
   private isAvailable: boolean;
 
@@ -31,6 +22,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): any {
+
     if (email == '' && password == '') {
       return 'Email o Password Vacios!';
     } else {
@@ -42,11 +34,16 @@ export class AuthService {
         }
       }).subscribe({
         next: (response) => {
-          // console.log(response)
           if (response.length > 0) {
-            if (response[0].email === email && response[0].password === password) {
-              localStorage.setItem('token', response[0].token);
-              localStorage.setItem('role', response[0].role);
+            const res = response[0];
+            if (res.email === email && res.password === password) {
+              console.log(res.firstName);
+              const userName = res.firstName + ' ' + res.lastName;
+
+              localStorage.setItem('token', res.token);
+              localStorage.setItem('role', res.role);
+              localStorage.setItem('userName', userName);
+
               this.router.navigate(['']);
             } else {
               alert('Credenciales Invalidas')
@@ -66,6 +63,7 @@ export class AuthService {
     this._authUser$.next(null);
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('userName');
     this.router.navigate(['authLogin']);
   }
 
