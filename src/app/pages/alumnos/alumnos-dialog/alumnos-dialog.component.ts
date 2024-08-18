@@ -33,10 +33,11 @@ export class AlumnosDialogComponent {
 
   onSubmit(): void {
     if (this.alumnoForm.valid) {
-      console.log(this.alumnoForm.value)
+
       this.matDialogRef.close(this.alumnoForm.value);
     } else {
       /// mostar error
+      alert('El formulario no es correcto.');
     }
   }
 }

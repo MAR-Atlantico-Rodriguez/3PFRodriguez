@@ -1,22 +1,22 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": "43j9",
       "firstName": "Martin",
       "lastName": "Rodriguez",
-      "email": "martin@gmail.com",
+      "email": "martin@martin.com",
       "password": "123456",
-      "token": "jfsdk43dsakdjasb4Dsdsa$@#fS1212",
+      "token": "TOKEN-slkdjflsdkjf102983laje098as-",
       "role": "ADMIN"
     },
     {
-      "id": "2",
-      "firstName": "test",
-      "lastName": "test",
-      "email": "test@mail.com",
+      "id": "53j9",
+      "firstName": "Atlantico",
+      "lastName": "Rodriguez",
+      "email": "atlantico@mail.com",
       "password": "123456",
-      "token": "jfsdk143bghkr3db4Dsdsa$d@#S",
-      "role": "EMPLOYEE"
+      "token": "TOKEN-oiusdfjwerksdf93$d@#S",
+      "role": "USER"
     }
   ],
   "courses": [
@@ -63,7 +63,48 @@
       "id": "2"
     }
   ],
-  "students": [],
+  "students": [
+    {
+      "id": "abcde",
+      "name": "Juan",
+      "surname": "Pérez",
+      "dni": "12345678A",
+      "sex": "Masculino",
+      "birthdate": "1995-05-15T00:00:00.000Z"
+    },
+    {
+      "id": "abcd2",
+      "name": "María",
+      "surname": "González",
+      "dni": "23456789B",
+      "sex": "Femenino",
+      "birthdate": "1997-08-22T00:00:00.000Z"
+    },
+    {
+      "id": "abc32",
+      "name": "Carlos",
+      "surname": "Rodríguez",
+      "dni": "34567890C",
+      "sex": "Masculino",
+      "birthdate": "1996-02-10T00:00:00.000Z"
+    },
+    {
+      "id": "abc39",
+      "name": "Pedro",
+      "surname": "López",
+      "dni": "56789012E",
+      "sex": "Masculino",
+      "birthdate": "1994-07-05T00:00:00.000Z"
+    },
+    {
+      "name": "Martin",
+      "surname": "Rodriguez",
+      "sex": "Masculino",
+      "birthdate": "2024-08-20T03:00:00.000Z",
+      "dni": "33123423",
+      "id": "iZpZO"
+    }
+  ],
   "clases": [
     {
       "id": "1",
@@ -88,26 +129,6 @@
       "cursoId": "2",
       "title": "Clase 1",
       "date": "2024-08-12T03:00:00.000Z"
-    }
-  ],
-  "users": [
-    {
-      "id": "43j9",
-      "firstName": "Martin",
-      "lastName": "Rodriguez",
-      "email": "martin@martin.com",
-      "password": "123456",
-      "token": "TOKEN-slkdjflsdkjf102983laje098as-",
-      "role": "ADMIN"
-    },
-    {
-      "id": "53j9",
-      "firstName": "Atlantico",
-      "lastName": "Rodriguez",
-      "email": "atlantico@mail.com",
-      "password": "123456",
-      "token": "TOKEN-oiusdfjwerksdf93$d@#S",
-      "role": "USER"
     }
   ]
 }

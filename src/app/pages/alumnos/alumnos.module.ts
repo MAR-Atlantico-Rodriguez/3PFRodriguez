@@ -7,6 +7,11 @@ import { FontTituloDirective } from '../../core/directives/font-titulo.directive
 import { NomApeAlumnosPipe } from '../../core/pipes/nom-ape-alumnos.pipe';
 import { MaterialModule } from '../../core/utils/material.module';
 import { AlumnosRoutingModule } from './alumnos-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { AlumnosEffects } from './store/alumnos.effects';
+import { StoreModule } from '@ngrx/store';
+import { alumnosFeature } from './store/alumnos.reducer';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +23,9 @@ import { AlumnosRoutingModule } from './alumnos-routing.module';
   imports: [
     CommonModule,
     MaterialModule,
-    AlumnosRoutingModule
+    AlumnosRoutingModule,
+    StoreModule.forFeature(alumnosFeature),
+    EffectsModule.forFeature([AlumnosEffects])
   ]
 })
 export class AlumnosModule { }

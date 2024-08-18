@@ -1,6 +1,6 @@
 <h4 appFontTitulo> Lista de Alumnos</h4>
 
-@if (isLoading) {
+@if (isLoading$ | async) {
 <mat-spinner></mat-spinner>
 } @else {
 <button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
@@ -8,8 +8,9 @@
 </button>
 }
 
+<!-- {{dataSource$ | async | json}} -->
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tableAlumnos">
+<table mat-table [dataSource]="dataSource$" class="mat-elevation-z8 tableAlumnos">
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">

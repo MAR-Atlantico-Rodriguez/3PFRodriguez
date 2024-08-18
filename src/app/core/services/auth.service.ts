@@ -37,12 +37,12 @@ export class AuthService {
           if (response.length > 0) {
             const res = response[0];
             if (res.email === email && res.password === password) {
-              console.log(res.firstName);
+
               const userName = res.firstName + ' ' + res.lastName;
 
-              localStorage.setItem('token', res.token);
-              localStorage.setItem('role', res.role);
-              localStorage.setItem('userName', userName);
+              window.localStorage.setItem('token', res.token);
+              window.localStorage.setItem('role', res.role);
+              window.localStorage.setItem('userName', userName);
 
               this.router.navigate(['']);
             } else {
@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   verifyToken(): Observable<boolean> {
-    const token = localStorage.getItem('token');
+    const token = window.localStorage.getItem('token');
     if (!token) {
       return of(false);
     }
@@ -84,7 +84,7 @@ export class AuthService {
             return false;
           } else {
             const authUser = res[0];
-            localStorage.setItem('token', authUser.token);
+            window.localStorage.setItem('token', authUser.token);
             return true;
           }
         })

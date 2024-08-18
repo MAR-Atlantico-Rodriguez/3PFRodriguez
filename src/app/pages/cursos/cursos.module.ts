@@ -14,6 +14,10 @@ import { MatTableModule } from '@angular/material/table';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CursosRoutingModule } from './cursos-routing.module';
 import { RouterLink } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { CursosEffects } from './store/cursos.effects';
+import { cursosFeature } from './store/cursos.reducer';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -35,7 +39,9 @@ import { RouterLink } from '@angular/router';
     MatDatepickerModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    RouterLink
+    RouterLink,
+    StoreModule.forFeature(cursosFeature),
+    EffectsModule.forFeature([CursosEffects])
   ]
 })
 export class CursosModule { }
