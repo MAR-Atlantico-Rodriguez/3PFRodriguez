@@ -1,5 +1,4 @@
-import { Component, WritableSignal } from '@angular/core';
-// import { AlumnosService } from '../../core/services/alumnos.service';
+import { Component } from '@angular/core';
 import { Alumno } from '../../core/interfaces/alumno';
 import { MatDialog } from '@angular/material/dialog';
 import { AlumnosDialogComponent } from './alumnos-dialog/alumnos-dialog.component';
@@ -7,9 +6,9 @@ import { generateId } from '../../core/utils';
 import { Store } from '@ngrx/store';
 import { RootState } from '../../core/store';
 import { AlumnosActions } from './store/alumnos.actions';
-import { Observable, of, Subscription } from 'rxjs';
-import { selectAlumnos, selectAlumnosState, selectIsLoading } from './store/alumnos.selectors';
-import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { selectAlumnos, selectIsLoading } from './store/alumnos.selectors';
+
 
 @Component({
   selector: 'app-alumnos',
@@ -22,11 +21,7 @@ export class AlumnosComponent {
   isLoading$: Observable<boolean>;
   dataSource$: Observable<Alumno[]>;
 
-  constructor(
-    // private alumnosService: AlumnosService,
-    private matDialog: MatDialog,
-    private store: Store<RootState>
-  ) {
+  constructor(private matDialog: MatDialog, private store: Store<RootState>) {
     this.dataSource$ = this.store.select(selectAlumnos);
     this.isLoading$ = this.store.select(selectIsLoading);
   }
@@ -56,7 +51,6 @@ export class AlumnosComponent {
       .subscribe({
         next: (alumno) => {
           if (!!alumno) {
-            console.log(alumno);
             this.store.dispatch(AlumnosActions.editAlumno({ id: editingAlumno.id, alumnoUpdate: alumno }));
           }
         },
@@ -64,7 +58,9 @@ export class AlumnosComponent {
   }
 
   deleteAlumnoById(id: string) {
-    this.store.dispatch(AlumnosActions.deleteAlumnoss({ id }));
+    if (confirm('Esta seguro?')) {
+      this.store.dispatch(AlumnosActions.deleteAlumnoss({ id }));
+    }
   }
 
 }

@@ -17,8 +17,6 @@ export class AlumnosService {
     return this.http.get<Alumno[]>(environment.apiUrl + '/students');
   }
 
-
-
   addAlumnos(alumno: Alumno): Observable<Alumno> {
     return this.http.post<Alumno>(environment.apiUrl + '/students', alumno);
   }

@@ -1,4 +1,4 @@
-@if (isLoading) {
+@if (isLoading$ | async) {
 <mat-spinner></mat-spinner>
 } @else {
 <button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
@@ -7,7 +7,7 @@
 
 <p>El nombre del curso creado es: {{ nombreCurso }}</p>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
