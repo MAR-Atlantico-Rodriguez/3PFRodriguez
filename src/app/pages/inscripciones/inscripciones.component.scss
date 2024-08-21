@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 400px;
+}
+
+.example-card:hover {
+    background-color: rgb(206, 255, 206);
+    border-color: black;
+    cursor: pointer;
+}
+
+.example-card-footer {
+    padding: 16px;
+}

@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { RootState } from '../../core/store';
 import { AlumnosActions } from './store/alumnos.actions';
 import { Observable } from 'rxjs';
-import { selectAlumnos, selectIsLoading } from './store/alumnos.selectors';
+import { selectAlumnos, selectIsLoadingAlumno } from './store/alumnos.selectors';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class AlumnosComponent {
 
   constructor(private matDialog: MatDialog, private store: Store<RootState>) {
     this.dataSource$ = this.store.select(selectAlumnos);
-    this.isLoading$ = this.store.select(selectIsLoading);
+    this.isLoading$ = this.store.select(selectIsLoadingAlumno);
   }
 
 

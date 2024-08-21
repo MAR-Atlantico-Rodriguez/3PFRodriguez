@@ -11,7 +11,7 @@ export const selectAlumnos = createSelector(
   (state) => state.alumnos
 );
 
-export const selectIsLoading = createSelector(
+export const selectIsLoadingAlumno = createSelector(
   selectAlumnosState,
   (state) => state.isLoading
 );

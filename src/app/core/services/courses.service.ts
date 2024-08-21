@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Course } from '../interfaces/course';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { json } from 'stream/consumers';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
@@ -11,7 +10,7 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(environment.apiUrl + '/courses');
+    return this.http.get<Course[]>(environment.apiUrl + '/courses?_embed=enrollments');
   }
 
   addCourse(course: Course): Observable<Course> {
@@ -32,4 +31,6 @@ export class CoursesService {
     // return this.MY_DATABASE.find(a => a.id === id)?.name;
     return this.http.get<Course>(environment.apiUrl + '/courses/' + id);
   }
+
+
 }

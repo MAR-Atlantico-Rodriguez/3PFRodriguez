@@ -1,1 +1,62 @@
-<p>inscripciones works!</p>
+<h1>Inscripciones a cursos / Alumnos</h1>
+
+<hr>
+
+<div class="flex">
+    <div class="flex-1">
+        <h1>Cursos</h1>
+
+        @if (isLoadingCourses$ | async) {
+        <mat-spinner></mat-spinner>
+        } @else {
+
+
+        @for (course of courses$ | async; track course.id) {
+
+        <mat-card class="example-card m-1" appearance="outlined" (click)="studentsCourse(course)">
+            <mat-card-header>
+                <mat-card-title>{{course.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Descripcion</p>
+            </mat-card-content>
+            <mat-card-footer class="example-card-footer">
+                <mat-chip-set aria-label="Chihuahua traits">
+                    <mat-chip>Inscriptos: {{course.enrollments?.length}}</mat-chip>
+                    <mat-chip>Clases: 12</mat-chip>
+                </mat-chip-set>
+            </mat-card-footer>
+        </mat-card>
+        }
+        }
+
+    </div>
+
+
+    <div class="flex-1">
+
+
+        @if (selectCourse.length>0) {
+        <h1>
+            <button mat-button class="font-bold" [disabled]="(selectCourse[0].id == '')?true:false"
+                (click)="addStudenCourse()">
+                <mat-icon color="accent">person_add</mat-icon>
+            </button>
+
+            | Alumnos del curso: {{selectCourse[0].name}}
+        </h1>
+
+
+
+        <mat-divider></mat-divider>
+
+        <mat-list role="list">
+            @for (student of studentsEnrollments; track student.id) {
+            <mat-list-item role="listitem">{{student.surname}}, {{student.name}} | {{student.dni}}</mat-list-item>
+            <mat-divider></mat-divider>
+            }
+
+        </mat-list>
+        }
+    </div>
+</div>

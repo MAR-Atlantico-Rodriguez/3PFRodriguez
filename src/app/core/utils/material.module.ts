@@ -15,6 +15,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListItem, MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -36,7 +40,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatCardModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatProgressBarModule,
+    MatListModule,
+    MatDividerModule,
+    MatOptionModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class MaterialModule { }
