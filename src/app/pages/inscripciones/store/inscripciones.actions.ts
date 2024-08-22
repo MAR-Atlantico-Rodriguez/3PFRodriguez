@@ -13,5 +13,9 @@ export const InscripcionesActions = createActionGroup({
     'Add Inscripciones': props<{ payload: Enrollment }>(),
     'Add Inscripciones Success': props<{ data: Enrollment }>(),
     'Add Inscripciones Failure': props<{ error: unknown }>(),
+
+    'Delete Inscripciones': props<{ enrollmentId: string }>(),
+    'Delete Inscripciones Success': props<{ data: Enrollment }>(),
+    'Delete Inscripciones Failure': props<{ error: unknown }>(),
   }
 });

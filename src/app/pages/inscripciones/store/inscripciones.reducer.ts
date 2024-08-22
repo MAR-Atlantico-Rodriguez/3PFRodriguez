@@ -23,6 +23,10 @@ export const reducer = createReducer(
   on(InscripcionesActions.loadInscripciones, state => ({ ...state, isLoading: true })),
   on(InscripcionesActions.loadInscripcionesSuccess, (state, action) => ({ ...state, isLoading: false })),
   on(InscripcionesActions.loadInscripcionesFailure, (state, action) => state),
+
+  on(InscripcionesActions.deleteInscripciones, state => ({ ...state, isLoading: true })),
+  on(InscripcionesActions.deleteInscripcionesSuccess, (state, action) => ({ ...state, isLoading: false })),
+  on(InscripcionesActions.deleteInscripcionesFailure, (state, action) => ({ ...state, error: action.error })),
 );
 
 export const inscripcionesFeature = createFeature({

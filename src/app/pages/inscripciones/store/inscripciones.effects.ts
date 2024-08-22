@@ -33,6 +33,17 @@ export class InscripcionesEffects {
     );
   });
 
+  deleteInscripcioness$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscripcionesActions.deleteInscripciones),
+      concatMap((action) =>
+        this.enrollmentsService.deleteEnrollment(action.enrollmentId).pipe(
+          map(data => InscripcionesActions.deleteInscripcionesSuccess({ data })),
+          catchError(error => of(InscripcionesActions.deleteInscripcionesFailure({ error }))))
+      )
+    );
+  });
+
 
   constructor(private actions$: Actions, private enrollmentsService: EnrollmentsService, private course: CoursesService) { }
 }

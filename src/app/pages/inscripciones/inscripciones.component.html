@@ -13,7 +13,8 @@
 
         @for (course of courses$ | async; track course.id) {
 
-        <mat-card class="example-card m-1" appearance="outlined" (click)="studentsCourse(course)">
+        <mat-card class="example-card m-1" [ngClass]="{'card-click': courseId == course.id}" appearance="outlined"
+            (click)="studentsCourse(course)">
             <mat-card-header>
                 <mat-card-title>{{course.name}}</mat-card-title>
             </mat-card-header>
@@ -51,9 +52,24 @@
         <mat-divider></mat-divider>
 
         <mat-list role="list">
-            @for (student of studentsEnrollments; track student.id) {
-            <mat-list-item role="listitem">{{student.surname}}, {{student.name}} | {{student.dni}}</mat-list-item>
+
+            @for (students of studentsEnrollments; track students.student.id) {
+            <mat-list-item role="listitem" id="{{students.enrollmentId}}">
+                <div class="flex p-3 m-3">
+
+                    <div class="w-10 flex">
+                        {{students.student.surname}}, {{students.student.name}} | {{students.student.dni}}
+                    </div>
+                    <div class="w-2 flex">
+                        <mat-icon color="warn" (click)="deleteEnrollement(students.enrollmentId)"
+                            style="cursor: pointer;">delete</mat-icon>
+                    </div>
+                </div>
+            </mat-list-item>
             <mat-divider></mat-divider>
+            }
+            @empty {
+            <p>No hay Inscriptos en el curso aun!</p>
             }
 
         </mat-list>

@@ -24,11 +24,9 @@ export class EnrollmentsService {
   //   return this.http.put<Course>(environment.apiUrl + '/courses/' + id, course);
   // }
 
-  // deleteCourseById(id: string): Observable<Course> {
-  //   // this.MY_DATABASE = this.MY_DATABASE.filter((el) => el.id != id);
-  //   return this.http.delete<Course>(environment.apiUrl + '/courses/' + id);
-  //   // return this.getCourses();
-  // }
+  deleteEnrollment(id: string): Observable<Enrollment> {
+    return this.http.delete<Enrollment>(environment.apiUrl + '/enrollments/' + id);
+  }
 
   // oneCoursesById(id: string): Observable<Course> {
   //   // return this.MY_DATABASE.find(a => a.id === id)?.name;

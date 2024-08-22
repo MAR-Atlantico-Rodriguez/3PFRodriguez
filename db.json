@@ -136,46 +136,5 @@
       "date": "2024-08-12T03:00:00.000Z"
     }
   ],
-  "enrollments": [
-    {
-      "id": "OLH9w",
-      "courseId": "1iolZ",
-      "studentId": "abcde"
-    },
-    {
-      "id": "UBgfW",
-      "courseId": "1iolZ",
-      "studentId": "abcd2"
-    },
-    {
-      "id": "nWsdH",
-      "courseId": "1iolZ",
-      "studentId": "abc32"
-    },
-    {
-      "id": "HdU5A",
-      "courseId": "iwe34",
-      "studentId": "abcde"
-    },
-    {
-      "id": "ZpgdD",
-      "courseId": "iwe34",
-      "studentId": "abcd2"
-    },
-    {
-      "id": "eXr0d",
-      "courseId": "kobu6",
-      "studentId": "abcde"
-    },
-    {
-      "id": "uuK32",
-      "courseId": "kobu6",
-      "studentId": "abcd2"
-    },
-    {
-      "id": "O9QMB",
-      "courseId": "d2Zur",
-      "studentId": "abcde"
-    }
-  ]
+  "enrollments": []
 }

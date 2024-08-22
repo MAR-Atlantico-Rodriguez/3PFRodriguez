@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { concat, concatMap, map, Observable } from 'rxjs';
 import { Course } from '../../core/interfaces/course';
 import { Alumno } from '../../core/interfaces/alumno';
@@ -6,14 +6,14 @@ import { Alumno } from '../../core/interfaces/alumno';
 import { Store } from '@ngrx/store';
 
 import { selectCourses, selectIsLoading } from '../cursos/store/cursos.selectors';
-import { selectAlumnos, selectIsLoadingAlumno } from '../alumnos/store/alumnos.selectors';
+import { selectAlumnos } from '../alumnos/store/alumnos.selectors';
 import { CursosActions } from '../cursos/store/cursos.actions';
 import { AlumnosActions } from '../alumnos/store/alumnos.actions';
-import { Enrollment } from '../../core/interfaces/enrollment';
+
 import { InscripcionesActions } from './store/inscripciones.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from './enrollment-dialog/enrollment-dialog.component';
-import { selectEnrollments, selectInscripcionesState } from './store/inscripciones.selectors';
+import { selectEnrollments } from './store/inscripciones.selectors';
 import { generateId } from '../../core/utils';
 
 @Component({
@@ -30,10 +30,11 @@ export class InscripcionesComponent implements OnInit {
   // isLoadingAlumnos$: Observable<boolean>;
   // isLoadingEnrollments$: Observable<boolean>;
 
-  studentsEnrollments: Alumno[] = [];
+  studentsEnrollments: any = [];
   selectCourse: Course[] = [];
+  courseId: string = '';
 
-  constructor(private store: Store, private matdialog: MatDialog) {
+  constructor(private store: Store, private matdialog: MatDialog, private elRef: ElementRef) {
     this.courses$ = this.store.select(selectCourses);
     this.alumnos$ = this.store.select(selectAlumnos);
 
@@ -54,6 +55,7 @@ export class InscripcionesComponent implements OnInit {
     this.studentsEnrollments = [];
     this.selectCourse = [];
     this.selectCourse.push(course);
+    this.courseId = course.id;
 
     course.enrollments?.forEach(enrollment => {
       this.alumnos$.pipe(
@@ -62,10 +64,12 @@ export class InscripcionesComponent implements OnInit {
         )
       ).subscribe(student => {
         if (student) {
-          this.studentsEnrollments.push(student);
+          this.studentsEnrollments.push({ enrollmentId: enrollment.id, student: student });
         }
       });
+
     });
+
   }
 
 
@@ -88,5 +92,14 @@ export class InscripcionesComponent implements OnInit {
         complete: () => this.store.dispatch(CursosActions.loadCursos())
 
       });
+  }
+
+
+  deleteEnrollement(enrollmentId: string) {
+    if (confirm('Estas seguro de eliminar el registro?')) {
+      this.store.dispatch(InscripcionesActions.deleteInscripciones({ enrollmentId }));
+      this.elRef.nativeElement.querySelector('#' + enrollmentId).remove();
+      // this.studentsEnrollments.filter(e => e.enrollmentId !== enrollmentId);
+    }
   }
 }
