@@ -81,7 +81,7 @@ export class ClasesComponent implements OnInit {
       .afterClosed()
       .subscribe({
         next: (value) => {
-          console.log('RECIBIMOS ESTE VALOR: ', value);
+          // console.log('RECIBIMOS ESTE VALOR: ', value);
           value['id'] = generateId(5);
           this.isLoading = true;
           this.clasesService.addClases(value).subscribe({

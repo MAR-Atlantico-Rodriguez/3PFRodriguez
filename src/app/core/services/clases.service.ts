@@ -31,8 +31,7 @@ export class ClasesService {
   }
 
   addClases(Clases: Clase): Observable<Clase> {
-    // this.MY_DATABASE_CLASES.push(Clases);
-    return this.getClases();
+    return this.http.post<Clase>(environment.apiUrl + '/clases', Clases);
   }
 
   deleteClasesById(id: string): Observable<Clase> {

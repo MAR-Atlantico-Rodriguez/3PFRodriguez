@@ -62,6 +62,18 @@
       "studentId": {
         "studentId": "abcd2"
       }
+    },
+    {
+      "id": "0adWh",
+      "title": "Clase 3",
+      "cursoId": "iwe34",
+      "date": "2024-08-30T03:00:00.000Z"
+    },
+    {
+      "id": "aao66",
+      "title": "prueba",
+      "cursoId": "1iolZ",
+      "date": "2024-08-29T03:00:00.000Z"
     }
   ],
   "products": [
@@ -134,7 +146,25 @@
       "cursoId": "2",
       "title": "Clase 1",
       "date": "2024-08-12T03:00:00.000Z"
+    },
+    {
+      "id": "TmQxz",
+      "title": "prueba 3",
+      "cursoId": "1iolZ",
+      "date": "2024-08-22T03:00:00.000Z"
+    },
+    {
+      "id": "bAGMd",
+      "title": "Prueba 4",
+      "cursoId": "kobu6",
+      "date": "2024-08-22T03:00:00.000Z"
     }
   ],
-  "enrollments": []
+  "enrollments": [
+    {
+      "id": "6mCta",
+      "courseId": "1iolZ",
+      "studentId": "abcde"
+    }
+  ]
 }
