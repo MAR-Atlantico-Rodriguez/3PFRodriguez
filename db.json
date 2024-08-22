@@ -136,11 +136,5 @@
       "date": "2024-08-12T03:00:00.000Z"
     }
   ],
-  "enrollments": [
-    {
-      "id": "X9k1n",
-      "courseId": "1iolZ",
-      "studentId": "abcde"
-    }
-  ]
+  "enrollments": []
 }

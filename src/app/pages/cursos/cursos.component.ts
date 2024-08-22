@@ -9,6 +9,7 @@ import { Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CursosActions } from './store/cursos.actions';
 import { selectCourses, selectIsLoading } from './store/cursos.selectors';
+import { selectRole } from '../auth-login/store/auth-login.selectors';
 
 @Component({
   selector: 'app-cursos',
@@ -21,10 +22,12 @@ export class CursosComponent {
   displayedColumns: string[] = ['id', 'name', 'startDate', 'endDate', 'actions',];
   isLoading$: Observable<boolean>;
   dataSource$: Observable<Course[]>;
+  role$: Observable<String>;
 
   constructor(private matDialog: MatDialog, private coursesService: CoursesService, private router: Router, private store: Store) {
     this.dataSource$ = this.store.select(selectCourses);
     this.isLoading$ = this.store.select(selectIsLoading);
+    this.role$ = this.store.select(selectRole);
   }
 
   ngOnInit(): void {

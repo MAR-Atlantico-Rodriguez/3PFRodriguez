@@ -3,9 +3,11 @@
 @if (isLoading$ | async) {
 <mat-spinner></mat-spinner>
 } @else {
+@if ((role$ | async) == "ADMIN") {
 <button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
     <mat-icon>add</mat-icon> Crear Alumnos
 </button>
+}
 }
 
 <!-- {{dataSource$ | async | json}} -->
@@ -46,7 +48,9 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
+
         <td mat-cell *matCellDef="let element">
+            @if ((role$ | async) == "ADMIN") {
             <button (click)="editAlumno(element)" mat-icon-button>
                 <mat-icon color="basic">edit</mat-icon>
             </button>
@@ -54,6 +58,7 @@
             <button (click)="deleteAlumnoById(element.id)" mat-icon-button>
                 <mat-icon color="warn">delete</mat-icon>
             </button>
+            }
         </td>
     </ng-container>
 

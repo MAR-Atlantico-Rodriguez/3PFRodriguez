@@ -5,8 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClasesDialogComponent } from './clases-dialog/clases-dialog.component';
 import { generateId } from '../../core/utils';
 import { ActivatedRoute } from '@angular/router';
-import { find, forkJoin, map, of, tap } from 'rxjs';
 import { CoursesService } from '../../core/services/courses.service';
+import { selectRole } from '../auth-login/store/auth-login.selectors';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -21,11 +23,15 @@ export class ClasesComponent implements OnInit {
   isLoading = false;
   idCurso: string | null = '';
   courseName: any;
+  role$: Observable<String>;
 
   constructor(private clasesService: ClasesService,
     private coursesService: CoursesService,
     private matDialog: MatDialog,
-    private router: ActivatedRoute) {
+    private router: ActivatedRoute,
+    private store: Store) {
+
+    this.role$ = this.store.select(selectRole);
 
   }
 

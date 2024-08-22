@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from './enrollment-dialog/enrollment-dialog.component';
 import { selectEnrollments } from './store/inscripciones.selectors';
 import { generateId } from '../../core/utils';
+import { selectRole } from '../auth-login/store/auth-login.selectors';
 
 @Component({
   selector: 'app-inscripciones',
@@ -27,7 +28,7 @@ export class InscripcionesComponent implements OnInit {
   alumnos$: Observable<Alumno[]>;
   enrollmentsStudents$: Observable<Alumno[]>;
   isLoadingCourses$: Observable<boolean>;
-  // isLoadingAlumnos$: Observable<boolean>;
+  role$: Observable<String>;
   // isLoadingEnrollments$: Observable<boolean>;
 
   studentsEnrollments: any = [];
@@ -39,9 +40,8 @@ export class InscripcionesComponent implements OnInit {
     this.alumnos$ = this.store.select(selectAlumnos);
 
     this.enrollmentsStudents$ = this.store.select(selectEnrollments);
-
     this.isLoadingCourses$ = this.store.select(selectIsLoading);
-    // this.isLoadingAlumnos$ = this.store.select(selectIsLoadingAlumno);
+    this.role$ = this.store.select(selectRole);
 
   }
 

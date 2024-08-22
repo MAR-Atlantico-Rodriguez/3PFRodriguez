@@ -1,11 +1,13 @@
 @if (isLoading$ | async) {
 <mat-spinner></mat-spinner>
 } @else {
+@if ((role$ | async) == "ADMIN") {
 <button (click)="openDialog()" mat-flat-button class="btn-add" color="primary">
     <mat-icon>add</mat-icon> Crear Curso
 </button>
 
 <p>El nombre del curso creado es: {{ nombreCurso }}</p>
+}
 
 <table mat-table [dataSource]="dataSource$" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
@@ -48,7 +50,7 @@
             <button (click)="viewClases(element.id)" mat-icon-button>
                 <mat-icon color="primary">list_alt</mat-icon>
             </button>
-
+            @if ((role$ | async) == "ADMIN") {
             <button (click)="editCourse(element)" mat-icon-button>
                 <mat-icon>edit</mat-icon>
             </button>
@@ -56,6 +58,7 @@
             <button (click)="deleteCourseById(element.id)" mat-icon-button>
                 <mat-icon>delete</mat-icon>
             </button>
+            }
         </td>
     </ng-container>
 

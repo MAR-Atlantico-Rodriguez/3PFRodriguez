@@ -8,6 +8,7 @@ import { RootState } from '../../core/store';
 import { AlumnosActions } from './store/alumnos.actions';
 import { Observable } from 'rxjs';
 import { selectAlumnos, selectIsLoadingAlumno } from './store/alumnos.selectors';
+import { selectRole } from '../auth-login/store/auth-login.selectors';
 
 
 @Component({
@@ -20,8 +21,9 @@ export class AlumnosComponent {
   displayedColumns: string[] = ['id', 'name', 'dni', 'sex', 'birthdate', 'actions'];
   isLoading$: Observable<boolean>;
   dataSource$: Observable<Alumno[]>;
-
+  role$: Observable<String>;
   constructor(private matDialog: MatDialog, private store: Store<RootState>) {
+    this.role$ = this.store.select(selectRole);
     this.dataSource$ = this.store.select(selectAlumnos);
     this.isLoading$ = this.store.select(selectIsLoadingAlumno);
   }
