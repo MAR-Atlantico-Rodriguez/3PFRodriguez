@@ -14,6 +14,12 @@ import { AuthService } from '../../core/services/auth.service';
 import { APP_CONFIG } from '../../core/injection-tokens';
 import { AuthLoginComponent } from './auth-login.component';
 import { AuthLoginRoutingModule } from './auth-login-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthLoginEffects } from './store/auth-login.effects';
+
+import { StoreModule } from '@ngrx/store';
+import { authLoginFeature } from './store/auth-login.reducer';
+import { MaterialModule } from '../../core/utils/material.module';
 
 @NgModule({
   declarations: [AuthLoginComponent],
@@ -21,13 +27,10 @@ import { AuthLoginRoutingModule } from './auth-login-routing.module';
   imports: [
     CommonModule,
     AuthLoginRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatSelectModule,
-    MatButtonModule,
+    MaterialModule,
     ReactiveFormsModule,
+    EffectsModule.forFeature([AuthLoginEffects]),
+    StoreModule.forFeature(authLoginFeature)
   ],
   providers: [
     AuthService,

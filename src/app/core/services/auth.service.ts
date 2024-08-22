@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
-import { User } from '../interfaces/user';
+import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
+import { User, UserLogin, UserRole } from '../interfaces/user';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -21,42 +21,38 @@ export class AuthService {
     this.isAvailable = typeof window !== 'undefined' && !!window.localStorage;
   }
 
-  login(email: string, password: string): any {
+  login(email: string, password: string): Observable<UserLogin> {
 
-    if (email == '' && password == '') {
-      return 'Email o Password Vacios!';
-    } else {
+    return this.http.get<User[]>(`${environment.apiUrl}/users`, {
+      params: {
+        email,
+        password
+      }
+    }).pipe(
+      map((user) => {
+        let usuario = user[0];
+        if (usuario.email == email && usuario.password == password) {
+          const userName = `${usuario.firstName} ${usuario.lastName}`;
+          const token = usuario.token;
+          const role = usuario.role as UserRole; // Asegúrate de que role es del tipo UserRole
 
-      this.http.get<User[]>(environment.apiUrl + '/users', {
-        params: {
-          email: email,
-          password: password
+          window.localStorage.setItem('token', token);
+          window.localStorage.setItem('role', role);
+          window.localStorage.setItem('userName', userName);
+
+          // Devuelve el objeto UserLogin aquí
+          return { token, role, username: userName };
+        } else {
+          // Lanzar un error para que el observable pueda manejarlo
+          throw new Error('Invalid credentials');
         }
-      }).subscribe({
-        next: (response) => {
-          if (response.length > 0) {
-            const res = response[0];
-            if (res.email === email && res.password === password) {
+      }),
+      catchError((error) => {
+        // Manejar el error de manera adecuada
+        return throwError(() => new Error(error.message));
+      })
+    );
 
-              const userName = res.firstName + ' ' + res.lastName;
-
-              window.localStorage.setItem('token', res.token);
-              window.localStorage.setItem('role', res.role);
-              window.localStorage.setItem('userName', userName);
-
-              this.router.navigate(['']);
-            } else {
-              alert('Credenciales Invalidas')
-            }
-          } else {
-            alert('Credenciales Invalidas')
-          }
-        },
-        error: (error) => {
-          return error;
-        }
-      });
-    }
   }
 
   logout() {

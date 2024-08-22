@@ -30,9 +30,14 @@
                     {{error}}
                 </p>
 
+                @if (isLoading$ | async) {
+                <mat-spinner class="w-2"></mat-spinner>
+                } @else {
                 <button type="submit" class="w-full mt-5" mat-flat-button color="primary">
                     Iniciar sesion
                 </button>
+                }
+
             </form>
         </mat-card-content>
     </mat-card>

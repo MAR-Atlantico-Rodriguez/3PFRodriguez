@@ -10,3 +10,9 @@ export interface User {
     role: UserRole;
     token: string;
 }
+
+export interface UserLogin {
+    token: string;
+    role: UserRole;
+    username: string;
+}
